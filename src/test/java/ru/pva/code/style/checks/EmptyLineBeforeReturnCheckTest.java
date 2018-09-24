@@ -14,7 +14,7 @@ public class EmptyLineBeforeReturnCheckTest {
 				.hasError()
 				.inFileWithName("EmptyLine.java")
 				.inLine(24)
-				.inColumn(9)
+				.inColumn(17)
 				.forModule("ru.pva.code.style.checks.EmptyLineBeforeReturnCheck")
 				.withErrorMessage("Empty string must be before return");
 	}

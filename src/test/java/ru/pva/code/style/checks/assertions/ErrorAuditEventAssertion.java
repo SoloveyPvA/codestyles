@@ -66,19 +66,19 @@ public class ErrorAuditEventAssertion {
 		}
 
 		public ModuleAssertion inColumn(final int column) {
-			val eventsOnOneLine = new ArrayList<AuditEvent>();
+			val filteredEvents = new ArrayList<AuditEvent>();
 
 			for (final AuditEvent event : errorEvents) {
 				if (event.getColumn() == column) {
-					eventsOnOneLine.add(event);
+					filteredEvents.add(event);
 				}
 			}
 
-			if (eventsOnOneLine.isEmpty()) {
+			if (filteredEvents.isEmpty()) {
 				throw new AssertionError(format("Audit listener not registered a error audit event in column: \"%s\"", column));
 			}
 
-			return new ModuleAssertion(eventsOnOneLine);
+			return new ModuleAssertion(filteredEvents);
 		}
 	}
 
