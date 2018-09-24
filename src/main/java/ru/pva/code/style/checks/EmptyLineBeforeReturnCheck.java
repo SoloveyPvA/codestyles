@@ -45,7 +45,7 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 		}
 
 		if (!isThereEmptyLineBeforeReturn(returnLineNumber)) {
-			log(returnLineNumber, returnToken.getColumnNo(), "Empty string must be return");
+			log(returnToken.getLineNo(), returnToken.getColumnNo(), "Empty string must be before return");
 		}
 	}
 
