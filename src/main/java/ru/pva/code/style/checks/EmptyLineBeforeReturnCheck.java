@@ -1,10 +1,10 @@
 package ru.pva.code.style.checks;
 
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.isBlank;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import lombok.val;
 
 
@@ -13,7 +13,7 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	@Override
 	public int[] getDefaultTokens() {
 		return new int[]{
-				TokenTypes.LITERAL_RETURN
+				LITERAL_RETURN
 		};
 	}
 
@@ -21,7 +21,7 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	public int[] getAcceptableTokens() {
 		return new int[]{
 				SLIST,
-				TokenTypes.LITERAL_RETURN
+				LITERAL_RETURN
 		};
 	}
 
@@ -33,7 +33,7 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	@Override
 	public void visitToken(final DetailAST returnToken) {
 		val block = returnToken.getParent();
-		if (block.getType() != SLIST) {
+		if (block == null || block.getType() != SLIST) {
 			return;
 		}
 
