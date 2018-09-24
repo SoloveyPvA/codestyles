@@ -14,7 +14,7 @@ import lombok.val;
 
 public class AssertCheck {
 
-	public static CheckAuditEventAssertion assertThatCheckFor(final String fileConfigPath, final String checkPath)
+	public static AuditEventAssertion assertThatCheckFor(final String fileConfigPath, final String checkPath)
 			throws CheckstyleException {
 		val checkingDirectory = new File(checkPath);
 		val checker = new Checker();
@@ -30,27 +30,32 @@ public class AssertCheck {
 
 		val errorCounter = checker.process(singletonList(checkingDirectory));
 
-		return new CheckAuditEventAssertion(listener, errorCounter);
+		return new AuditEventAssertion(listener, errorCounter);
 	}
 
-	public static class CheckAuditEventAssertion {
+	public static class AuditEventAssertion {
 
 		private final StubAuditListener listener;
 		private final int errorCount;
 
-		CheckAuditEventAssertion(final StubAuditListener listener, final int errorCounter) {
+		AuditEventAssertion(final StubAuditListener listener, final int errorCounter) {
 			this.errorCount = errorCounter;
 			this.listener = listener;
 		}
 
-		public CheckAuditEventAssertion hasErrorsCount(final int expected) {
+		public AuditEventAssertion hasErrorsCount(final int expected) {
 			assertThat(errorCount).isEqualTo(expected);
 			assertThat(listener.getErrorEvents()).hasSize(expected);
 
 			return this;
 		}
 
-		public CheckAuditEventAssertion containsErrorAuditEventWithMessage(final String expected) {
+		public ErrorAuditEventAssertion hasError() {
+			assertThat(listener.getErrorEvents()).isNotEmpty();
+			return new ErrorAuditEventAssertion(listener.getErrorEvents());
+		}
+
+		public AuditEventAssertion containsErrorAuditEventWithMessage(final String expected) {
 			assertThat(listener.getErrorEvents()).isNotEmpty();
 
 			for (final AuditEvent event : listener.getErrorEvents()) {

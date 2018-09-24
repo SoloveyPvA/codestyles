@@ -11,6 +11,11 @@ public class EmptyLineBeforeReturnCheckTest {
 	public void checkFile() throws CheckstyleException {
 		assertThatCheckFor("src/test/resources/returns/return_check.xml", "src/test/resources/returns/EmptyLine.java")
 				.hasErrorsCount(1)
-				.containsErrorAuditEventWithMessage("Empty string must be before return");
+				.hasError()
+				.inFileWithName("EmptyLine.java")
+				.inLine(24)
+				.inColumn(8)
+				.forModule("ru.pva.code.style.checks.EmptyLineBeforeReturnCheck")
+				.withErrorMessage("Empty string must be before return");
 	}
 }
