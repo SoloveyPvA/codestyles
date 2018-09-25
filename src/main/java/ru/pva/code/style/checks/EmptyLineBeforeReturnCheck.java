@@ -7,7 +7,9 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import lombok.val;
 
-
+/**
+ * Checks for empty lines before `return` or `throw` if the number of lines in the code block is greater than three.
+ */
 public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 
 	@Override
