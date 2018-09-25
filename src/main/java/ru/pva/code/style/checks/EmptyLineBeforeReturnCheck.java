@@ -9,6 +9,7 @@ import lombok.val;
 
 /**
  * Checks for empty lines before `return` or `throw` if the number of lines in the code block is greater than three.
+ * Parent module: TreeWalker
  */
 public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 
