@@ -50,6 +50,6 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	}
 
 	private boolean isThereEmptyLineBeforeReturn(final int returnLineNumber) {
-		return isEmpty(getLine(returnLineNumber - 1));
+		return isEmpty(getLine(returnLineNumber - 2));
 	}
 }

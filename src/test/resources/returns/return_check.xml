@@ -3,6 +3,8 @@
 
 <module name="Checker">
 	<module name="TreeWalker">
+		<property name="tabWidth" value="4"/>
+
 		<module name="ru.pva.code.style.checks.EmptyLineBeforeReturnCheck"/>
 	</module>
 </module>

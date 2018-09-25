@@ -7,13 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.NonNull;
 import lombok.val;
+import ru.pva.code.style.checks.assertions.AssertCheck.AuditEventAssertion;
 
 public class ErrorAuditEventAssertion {
 
 	private final List<AuditEvent> errorEvents;
+	private final AuditEventAssertion auditEventAssertion;
 
-	ErrorAuditEventAssertion(final List<AuditEvent> errorEvents) {
+	ErrorAuditEventAssertion(final List<AuditEvent> errorEvents,
+			final AuditEventAssertion auditEventAssertion) {
 		this.errorEvents = errorEvents;
+		this.auditEventAssertion = auditEventAssertion;
 	}
 
 	public LineAssertion inFileWithName(@NonNull final String fileName) {
@@ -32,7 +36,7 @@ public class ErrorAuditEventAssertion {
 		return new LineAssertion(filteredEvents);
 	}
 
-	public static class LineAssertion {
+	public class LineAssertion {
 
 		private final List<AuditEvent> errorEvents;
 
@@ -57,7 +61,7 @@ public class ErrorAuditEventAssertion {
 		}
 	}
 
-	public static class ColumnAssertion {
+	public class ColumnAssertion {
 
 		private final List<AuditEvent> errorEvents;
 
@@ -82,7 +86,7 @@ public class ErrorAuditEventAssertion {
 		}
 	}
 
-	public static class ModuleAssertion {
+	public class ModuleAssertion {
 
 		private final List<AuditEvent> errorEvents;
 
@@ -112,7 +116,7 @@ public class ErrorAuditEventAssertion {
 		}
 	}
 
-	public static class ErrorMessageAssertion {
+	public class ErrorMessageAssertion {
 
 		private final List<AuditEvent> errorEvents;
 
@@ -120,11 +124,11 @@ public class ErrorAuditEventAssertion {
 			this.errorEvents = errorEvents;
 		}
 
-		public void withErrorMessage(@NonNull final String errorMessage) {
+		public AuditEventAssertion withErrorMessage(@NonNull final String errorMessage) {
 
 			for (final AuditEvent event : errorEvents) {
 				if (errorMessage.equals(event.getMessage())) {
-					return;
+					return auditEventAssertion;
 				}
 			}
 

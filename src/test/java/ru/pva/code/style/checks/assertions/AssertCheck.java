@@ -52,7 +52,7 @@ public class AssertCheck {
 
 		public ErrorAuditEventAssertion hasError() {
 			assertThat(listener.getErrorEvents()).isNotEmpty();
-			return new ErrorAuditEventAssertion(listener.getErrorEvents());
+			return new ErrorAuditEventAssertion(listener.getErrorEvents(), this);
 		}
 
 		public AuditEventAssertion containsErrorAuditEventWithMessage(final String expected) {
