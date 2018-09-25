@@ -117,7 +117,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		when(parentToken.getType()).thenReturn(SLIST);
 		when(parentToken.getLineNo()).thenReturn(1);
 		when(returnToken.getLineNo()).thenReturn(4);
-		when(fileContents.getLine(4-1)).thenReturn("");
+		when(fileContents.getLine(4-2)).thenReturn("");
 
 		tested.visitToken(returnToken);
 
@@ -125,7 +125,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		verify(parentToken).getType();
 		verify(parentToken).getLineNo();
 		verify(returnToken).getLineNo();
-		verify(fileContents).getLine(3);
+		verify(fileContents).getLine(2);
 		verifyNoMoreInteractions(returnToken, parentToken, localizedMessages, fileContents);
 	}
 
@@ -140,7 +140,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		when(parentToken.getLineNo()).thenReturn(1);
 		when(returnToken.getLineNo()).thenReturn(returnLineNo);
 		when(returnToken.getColumnNo()).thenReturn(returnColumnNo);
-		when(fileContents.getLine(returnLineNo-1)).thenReturn("  ");
+		when(fileContents.getLine(returnLineNo-2)).thenReturn("  ");
 		when(fileContents.getLines()).thenReturn(new String[] {"{", "anyStringAnyString", "  ", "return 2;","}"});
 
 		tested.visitToken(returnToken);
@@ -150,7 +150,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		inOrder.verify(parentToken).getType();
 		inOrder.verify(parentToken).getLineNo();
 		inOrder.verify(returnToken).getLineNo();
-		inOrder.verify(fileContents).getLine(returnLineNo-1);
+		inOrder.verify(fileContents).getLine(returnLineNo-2);
 		inOrder.verify(returnToken).getLineNo();
 		inOrder.verify(returnToken).getColumnNo();
 		inOrder.verify(fileContents).getLines();
@@ -176,7 +176,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		when(parentToken.getLineNo()).thenReturn(1);
 		when(returnToken.getLineNo()).thenReturn(returnLineNo);
 		when(returnToken.getColumnNo()).thenReturn(returnColumnNo);
-		when(fileContents.getLine(returnLineNo-1)).thenReturn("anyStringAnyString");
+		when(fileContents.getLine(returnLineNo-2)).thenReturn("anyStringAnyString");
 		when(fileContents.getLines()).thenReturn(new String[] {"{", "anyStringAnyString", "anyStringAnyString", "return 2;","}"});
 
 		tested.visitToken(returnToken);
@@ -186,7 +186,7 @@ public class EmptyLineBeforeReturnCheckTest {
 		inOrder.verify(parentToken).getType();
 		inOrder.verify(parentToken).getLineNo();
 		inOrder.verify(returnToken).getLineNo();
-		inOrder.verify(fileContents).getLine(returnLineNo-1);
+		inOrder.verify(fileContents).getLine(returnLineNo-2);
 		inOrder.verify(returnToken).getLineNo();
 		inOrder.verify(returnToken).getColumnNo();
 		inOrder.verify(fileContents).getLines();
