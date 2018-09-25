@@ -2,7 +2,7 @@ package ru.pva.code.style.checks;
 
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
-import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import lombok.val;
@@ -50,6 +50,6 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	}
 
 	private boolean isThereEmptyLineBeforeReturn(final int returnLineNumber) {
-		return isBlank(getLine(returnLineNumber - 1));
+		return isEmpty(getLine(returnLineNumber - 1));
 	}
 }
