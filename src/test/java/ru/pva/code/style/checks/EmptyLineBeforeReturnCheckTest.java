@@ -2,6 +2,7 @@ package ru.pva.code.style.checks;
 
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.FINAL;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentCaptor.forClass;
@@ -54,16 +55,16 @@ public class EmptyLineBeforeReturnCheckTest {
 	public void getDefaultTokens() {
 		val actual = tested.getDefaultTokens();
 
-		assertThat(actual).hasSize(1);
-		assertThat(actual).contains(LITERAL_RETURN);
+		assertThat(actual).hasSize(2);
+		assertThat(actual).contains(LITERAL_RETURN, LITERAL_THROW);
 	}
 
 	@Test
 	public void getAcceptableTokens() {
 		val actual = tested.getAcceptableTokens();
 
-		assertThat(actual).hasSize(2);
-		assertThat(actual).contains(SLIST, LITERAL_RETURN);
+		assertThat(actual).hasSize(3);
+		assertThat(actual).contains(SLIST, LITERAL_RETURN, LITERAL_THROW);
 	}
 
 	@Test

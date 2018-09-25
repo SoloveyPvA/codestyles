@@ -1,6 +1,7 @@
 package ru.pva.code.style.checks;
 
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -16,7 +17,8 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	@Override
 	public int[] getDefaultTokens() {
 		return new int[]{
-				LITERAL_RETURN
+				LITERAL_RETURN,
+				LITERAL_THROW
 		};
 	}
 
@@ -24,7 +26,8 @@ public class EmptyLineBeforeReturnCheck extends AbstractCheck {
 	public int[] getAcceptableTokens() {
 		return new int[]{
 				SLIST,
-				LITERAL_RETURN
+				LITERAL_RETURN,
+				LITERAL_THROW
 		};
 	}
 
