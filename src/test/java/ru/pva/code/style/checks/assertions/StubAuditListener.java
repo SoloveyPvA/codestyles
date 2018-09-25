@@ -4,8 +4,8 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
 import lombok.Getter;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Getter
 public class StubAuditListener implements AuditListener {
@@ -44,6 +44,6 @@ public class StubAuditListener implements AuditListener {
 
 	@Override
 	public void addException(final AuditEvent auditEvent, final Throwable throwable) {
-		exceptionEvents.add(new Pair<>(auditEvent, throwable));
+		exceptionEvents.add(Pair.of(auditEvent, throwable));
 	}
 }
